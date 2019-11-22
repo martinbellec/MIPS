@@ -120,11 +120,8 @@ int ADD(char type[], char parametre1[], char parametre2[], char parametre3[]) {
   int resultat = 32;
   resultat += 0 >> 6;
   resultat += atoi(&parametre1[1]) << 11;
-  resultat += atoi(&parametre1[2]) << 11;
   resultat += atoi(&parametre3[1]) << 16;
-  resultat += atoi(&parametre3[2]) << 16;
   resultat += atoi(&parametre2[1]) << 21;
-  resultat += atoi(&parametre2[2]) << 21;
   printf("%08x\n", resultat);
   return resultat;
 }
@@ -132,14 +129,7 @@ int ADD(char type[], char parametre1[], char parametre2[], char parametre3[]) {
 int ADDI(char type[], char parametre1[], char parametre2[], char parametre3[]) {
   int resultat = 8 << 26;
   resultat += atoi(&parametre3[0]);
-  resultat += atoi(&parametre3[1]);
-  resultat += atoi(&parametre3[2]);
-  resultat += atoi(&parametre3[3]);
-  resultat += atoi(&parametre3[4]);
-  resultat += atoi(&parametre3[5]);
-  resultat += atoi(&parametre1[0]) << 16;
   resultat += atoi(&parametre1[1]) << 16;
-  resultat += atoi(&parametre2[0]) << 21;
   resultat += atoi(&parametre2[1]) << 21;
   printf("%08x\n", resultat);
   return resultat;
