@@ -35,7 +35,7 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
 void detecterType(char type[], char parametre1[], char parametre2[], char parametre3[]) {
   if(strcmp(type, "ADD") == 0) {
     printf("ADD\n");
-    ADD(type, parametre1, parametre2, parametre3);
+    R_fonction(32, parametre1, parametre2, parametre3);
   }
   else if(strcmp(type, "ADDI") == 0){
     printf("ADDI\n");
@@ -43,6 +43,7 @@ void detecterType(char type[], char parametre1[], char parametre2[], char parame
   }
   else if(strcmp(type, "AND") == 0){
     printf("AND");
+    R_fonction(36, parametre1, parametre2, parametre3);
   }
   else if(strcmp(type, "BEQ") == 0){
     printf("BEQ");
@@ -130,6 +131,16 @@ int ADDI(char type[], char parametre1[], char parametre2[], char parametre3[]) {
   int resultat = 8 << 26;
   resultat += atoi(&parametre3[0]);
   resultat += atoi(&parametre1[1]) << 16;
+  resultat += atoi(&parametre2[1]) << 21;
+  printf("%08x\n", resultat);
+  return resultat;
+}
+
+int R_fonction(int type, char parametre1[], char parametre2[], char parametre3[]) {
+  int resultat = type;
+  resultat += 0 >> 6;
+  resultat += atoi(&parametre1[1]) << 11;
+  resultat += atoi(&parametre3[1]) << 16;
   resultat += atoi(&parametre2[1]) << 21;
   printf("%08x\n", resultat);
   return resultat;
