@@ -39,7 +39,7 @@ void detecterType(char type[], char parametre1[], char parametre2[], char parame
   }
   else if(strcmp(type, "ADDI") == 0){
     printf("ADDI\n");
-    ADDI(type, parametre1, parametre2, parametre3);
+    I_fonction(8, parametre1, parametre2, parametre3);
   }
   else if(strcmp(type, "AND") == 0){
     printf("AND");
