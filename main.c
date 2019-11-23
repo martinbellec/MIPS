@@ -8,6 +8,7 @@ int main(int argc, char *argv[]) {
   char parametre1[30] = "\0";
   char parametre2[30] = "\0";
   char parametre3[30] = "\0";
+  char vide[30] = "\0";
   FILE* fichier;
   fichier = fopen("test.txt", "r+");
   if(fichier == NULL) {
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]) {
 
   while(fgets(commande, 30, fichier)!=NULL) {
     lireCommande(commande, type, parametre1, parametre2, parametre3);
-    detecterType(type, parametre1, parametre2, parametre3);
+    detecterType(type, parametre1, parametre2, parametre3, vide);
     for (i=0;i<30;i++) {
       type[i] = '\0';
       parametre1[i] = '\0';
