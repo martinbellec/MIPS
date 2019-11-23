@@ -1,7 +1,28 @@
 #include "fonctions.h"
 #include "register.h"
 
+void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
+  char commande[30];
+  int i = 0;
+  int resultat;
+  char type[30] = "\0";
+  char parametre1[30] = "\0";
+  char parametre2[30] = "\0";
+  char parametre3[30] = "\0";
+  char vide[30] = "\0";
 
+  while(fgets(commande, 30, fichier_assembleur)!=NULL) {
+    lireCommande(commande, type, parametre1, parametre2, parametre3);
+    resultat = detecterType(type, parametre1, parametre2, parametre3, vide);
+    for (i=0;i<30;i++) {
+      type[i] = '\0';
+      parametre1[i] = '\0';
+      parametre2[i] = '\0';
+      parametre3[i] = '\0';
+    }
+    fprintf(fichier_hexa, "%08x\n", resultat);
+  }
+}
 
 void lireCommande(char commande[], char type[], char parametre1[], char parametre2[], char parametre3[]) {
   int indice = 0, j = 0;
@@ -33,10 +54,11 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
   }
 }
 
-void detecterType(char type[], char parametre1[], char parametre2[], char parametre3[], char vide[]) {
+int detecterType(char type[], char parametre1[], char parametre2[], char parametre3[], char vide[]) {
+  int resultat;
   if(strcmp(type, "ADD") == 0) {
     printf("ADD\n");
-    R_fonction(type, 32, parametre2, parametre3, parametre1, vide);
+    resultat = R_fonction(type, 32, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "ADDI") == 0){
     printf("ADDI\n");
@@ -44,7 +66,7 @@ void detecterType(char type[], char parametre1[], char parametre2[], char parame
   }
   else if(strcmp(type, "AND") == 0){
     printf("AND\n");
-    R_fonction(type, 36, parametre2, parametre3, parametre1, vide);
+    resultat = R_fonction(type, 36, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "BEQ") == 0){
     printf("BEQ\n");
@@ -60,7 +82,7 @@ void detecterType(char type[], char parametre1[], char parametre2[], char parame
   }
   else if(strcmp(type, "DIV") == 0){
     printf("DIV\n");
-    R_fonction(type, 26, parametre1, parametre2, parametre3, vide);
+    resultat = R_fonction(type, 26, parametre1, parametre2, parametre3, vide);
   }
   else if(strcmp(type, "J") == 0){
     printf("J\n");
@@ -72,7 +94,7 @@ void detecterType(char type[], char parametre1[], char parametre2[], char parame
   }
   else if(strcmp(type, "JR") == 0){
     printf("JR\n");
-    R_fonction(type, 8, parametre1, parametre2, parametre3, vide);
+    resultat = R_fonction(type, 8, parametre1, parametre2, parametre3, vide);
   }
   else if(strcmp(type, "LUI") == 0){
     printf("LUI\n");
@@ -82,55 +104,56 @@ void detecterType(char type[], char parametre1[], char parametre2[], char parame
   }
   else if(strcmp(type, "MFHI") == 0){
     printf("MFHI\n");
-    R_fonction(type, 16, parametre2, parametre3, parametre1, vide);
+    resultat = R_fonction(type, 16, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "MFLO") == 0){
     printf("MFLO\n");
-    R_fonction(type, 18, parametre2, parametre3, parametre1, vide);
+    resultat = R_fonction(type, 18, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "MULT") == 0){
     printf("MULT\n");
-    R_fonction(type, 24, parametre1, parametre2, parametre3, vide);
+    resultat = R_fonction(type, 24, parametre1, parametre2, parametre3, vide);
   }
   else if(strcmp(type, "NOP") == 0){
     printf("NOP\n");
-    R_fonction(type, 0, parametre1, parametre2, parametre3, vide);
+    resultat = R_fonction(type, 0, parametre1, parametre2, parametre3, vide);
   }
   else if(strcmp(type, "OR") == 0){
     printf("OR\n");
-    R_fonction(type, 37, parametre2, parametre3, parametre1, vide);
+    resultat = R_fonction(type, 37, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "ROTR") == 0){
     printf("ROTR\n");
-    R_fonction(type, 2, vide, parametre2, parametre1, parametre3);
+    resultat = R_fonction(type, 2, vide, parametre2, parametre1, parametre3);
   }
   else if(strcmp(type, "SLL") == 0){
     printf("SLL\n");
-    R_fonction(type, 0, vide, parametre2, parametre1, parametre3);
+    resultat = R_fonction(type, 0, vide, parametre2, parametre1, parametre3);
   }
   else if(strcmp(type, "SLT") == 0){
     printf("SLT\n");
-    R_fonction(type, 42, parametre2, parametre3, parametre1, vide);
+    resultat = R_fonction(type, 42, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "SRL") == 0){
     printf("SRL\n");
-    R_fonction(type, 2, vide, parametre2, parametre1, parametre3);
+    resultat = R_fonction(type, 2, vide, parametre2, parametre1, parametre3);
   }
   else if(strcmp(type, "SUB") == 0){
     printf("SUB\n");
-    R_fonction(type, 34, parametre2, parametre3, parametre1, vide);
+    resultat = R_fonction(type, 34, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "SW") == 0){
     printf("SW\n");
   }
   else if(strcmp(type, "SYSCALL") == 0){
     printf("SYSCALL\n");
-    R_fonction(type, 12, parametre1, parametre2, parametre3, vide);
+    resultat = R_fonction(type, 12, parametre1, parametre2, parametre3, vide);
   }
   else if(strcmp(type, "XOR") == 0){
     printf("XOR\n");
-    R_fonction(type, 38, parametre2, parametre3, parametre1, vide);
+    resultat = R_fonction(type, 38, parametre2, parametre3, parametre1, vide);
   }
+  return resultat;
 }
 
 
