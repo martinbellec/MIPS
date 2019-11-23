@@ -64,10 +64,11 @@ void detecterType(char type[], char parametre1[], char parametre2[], char parame
   }
   else if(strcmp(type, "J") == 0){
     printf("J\n");
-
+    J_fonction(2, parametre1);
   }
   else if(strcmp(type, "JAL") == 0){
     printf("JAL\n");
+    J_fonction(3, parametre1);
   }
   else if(strcmp(type, "JR") == 0){
     printf("JR\n");
@@ -162,6 +163,13 @@ int R_fonction(char type[], int type_nombre, char rs[], char rt[], char rd[], ch
   resultat += atoi(&rd[1]) << 11;
   resultat += atoi(&rt[1]) << 16;
   resultat += atoi(&rs[1]) << 21;
+  printf("%08x\n", resultat);
+  return resultat;
+}
+
+int J_fonction(int type, char target[]) {
+  int resultat = type << 26;
+  resultat += (atoi(&target[0]) & 67108863);
   printf("%08x\n", resultat);
   return resultat;
 }
