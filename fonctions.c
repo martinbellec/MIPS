@@ -130,17 +130,6 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
   return resultat;
 }
 
-
-int ADD(char type[], char parametre1[], char parametre2[], char parametre3[]) {
-  int resultat = 32;
-  resultat += 0 >> 6;
-  resultat += atoi(&parametre1[1]) << 11;
-  resultat += atoi(&parametre3[1]) << 16;
-  resultat += atoi(&parametre2[1]) << 21;
-  printf("%08x\n", resultat);
-  return resultat;
-}
-
 int ADDI(char type[], char parametre1[], char parametre2[], char parametre3[]) {
   int resultat = 8 << 26;
   resultat += atoi(&parametre3[0]);
