@@ -1,5 +1,6 @@
 #include "fonctions.h"
 #include "register.h"
+#include "guilhemfn.h"
 
 void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
   char commande[30];

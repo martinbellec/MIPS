@@ -1,5 +1,7 @@
 #include "fonctions.h"
 #include "register.h"
+#include "guilhemfn.h"
+
 
 int main(int argc, char *argv[]) {
   FILE* fichier_assembleur = fopen(argv[1], "r+");
