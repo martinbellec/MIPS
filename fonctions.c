@@ -57,11 +57,12 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
 
 int detecterType(char type[], char parametre1[], char parametre2[], char parametre3[], char vide[]) {
   int resultat;
+  char zero[5] = "000";
   if(strcmp(type, "ADD") == 0) {
     resultat = R_fonction(type, 32, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "ADDI") == 0){
-    I_fonction(8, parametre1, parametre2, parametre3);
+    resultat = I_fonction(8, parametre1, parametre2, parametre3);
   }
   else if(strcmp(type, "AND") == 0){
     resultat = R_fonction(type, 36, parametre2, parametre3, parametre1, vide);
@@ -87,8 +88,10 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
     resultat = R_fonction(type, 8, parametre1, parametre2, parametre3, vide);
   }
   else if(strcmp(type, "LUI") == 0){
+    resultat = I_fonction(15, parametre1, zero, parametre2); /*fonctionne*/
   }
   else if(strcmp(type, "LW") == 0){
+    /*resultat = I_fonction(35, parametre1, parametre2, parametre3); ne fonctionne pas */
   }
   else if(strcmp(type, "MFHI") == 0){
     resultat = R_fonction(type, 16, parametre2, parametre3, parametre1, vide);
