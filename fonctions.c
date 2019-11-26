@@ -57,6 +57,7 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
 
 int detecterType(char type[], char parametre1[], char parametre2[], char parametre3[], char vide[]) {
   int resultat;
+  int i=0,j=0;
   char zero[5] = "000";
   if(strcmp(type, "ADD") == 0) {
     resultat = R_fonction(type, 32, parametre2, parametre3, parametre1, vide);
@@ -91,7 +92,26 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
     resultat = I_fonction(15, parametre1, zero, parametre2); /*fonctionne*/
   }
   else if(strcmp(type, "LW") == 0){
-    /*resultat = I_fonction(35, parametre1, parametre2, parametre3); ne fonctionne pas */
+    /*printf ("parametre2 au debut vaut : %s\n", parametre2);*/
+    /*configuration de parametre3 pour qu'il corresponde à l'offset*/
+    i=0;
+    while (parametre2[i]!='('){
+      parametre3[i]=parametre2[i];
+      i++;
+    }
+    parametre3[i]='\0';
+    /*printf ("mon offset : %s\n", parametre3);*/
+    /*configuration de parametre2 poour qu'il corresponde au registre de depart*/
+    j=0;
+    i=i+1;
+    while (parametre2[i]!=')'){
+      parametre2[j]=parametre2[i];
+      i++;
+      j++;
+    }
+    parametre2[j]='\0';
+    /*printf ("parametre2 à la fin vaut : %s\n", parametre2);*/
+    resultat = I_fonction(35, parametre1, parametre2, parametre3);
   }
   else if(strcmp(type, "MFHI") == 0){
     resultat = R_fonction(type, 16, parametre2, parametre3, parametre1, vide);
