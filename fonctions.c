@@ -120,15 +120,19 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
   else if(strcmp(type, "AND") == 0){
     resultat = R_fonction(type, 36, parametre2, parametre3, parametre1, vide);
   }
-  else if(strcmp(type, "BEQ") == 0){
+  else if(strcmp(type, "BEQ") == 0){ /*fonctionne*/
+    resultat = I_fonction(4, parametre2, parametre1, parametre3);
   }
-  else if(strcmp(type, "BGTZ") == 0){
+  else if(strcmp(type, "BGTZ") == 0){ /*fonctionne*/
+    resultat = I_fonction(7, zero, parametre1, parametre2);
   }
   else if(strcmp(type, "BLEZ") == 0){
+    resultat = I_fonction(6, zero, parametre1, parametre2);
   }
-  else if(strcmp(type, "BNE") == 0){
+  else if(strcmp(type, "BNE") == 0){ /*fonctionne*/
+    resultat = I_fonction(5, parametre2, parametre1, parametre3);
   }
-  else if(strcmp(type, "DIV") == 0){
+  else if(strcmp(type, "DIV") == 0){ /*fonctionne*/
     resultat = R_fonction(type, 26, parametre1, parametre2, parametre3, vide);
   }
   else if(strcmp(type, "J") == 0){
@@ -144,7 +148,6 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
     resultat = I_fonction(15, parametre1, zero, parametre2);
   }
   else if(strcmp(type, "LW") == 0){ /*fonctionne*/
-    /*printf ("parametre2 au debut vaut : %s\n", parametre2);*/
     /*configuration de parametre3 pour qu'il corresponde à l'offset*/
     i=0;
     while (parametre2[i]!='('){
@@ -152,7 +155,6 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
       i++;
     }
     parametre3[i]='\0';
-    /*printf ("mon offset : %s\n", parametre3);*/
     /*configuration de parametre2 poour qu'il corresponde au registre de depart*/
     j=0;
     i=i+1;
@@ -162,7 +164,7 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
       j++;
     }
     parametre2[j]='\0';
-    /*printf ("parametre2 à la fin vaut : %s\n", parametre2);*/
+    /*transformation en hexa*/
     resultat = I_fonction(35, parametre1, parametre2, parametre3);
   }
   else if(strcmp(type, "MFHI") == 0){
@@ -196,7 +198,6 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
     resultat = R_fonction(type, 34, parametre2, parametre3, parametre1, vide);
   }
   else if(strcmp(type, "SW") == 0){
-    /*printf ("parametre2 au debut vaut : %s\n", parametre2);*/
     /*configuration de parametre3 pour qu'il corresponde à l'offset*/
     i=0;
     while (parametre2[i]!='('){
@@ -204,7 +205,6 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
       i++;
     }
     parametre3[i]='\0';
-    /*printf ("mon offset : %s\n", parametre3);*/
     /*configuration de parametre2 poour qu'il corresponde au registre de depart*/
     j=0;
     i=i+1;
@@ -214,7 +214,7 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
       j++;
     }
     parametre2[j]='\0';
-    /*printf ("parametre2 à la fin vaut le reg de depart : %s\n", parametre2);*/
+    /*transformation en hexa */
     resultat = I_fonction(43, parametre1, parametre2, parametre3);
   }
   else if(strcmp(type, "SYSCALL") == 0){
