@@ -3,7 +3,7 @@
 #include "guilhemfn.h"
 
 void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
-  char commande[30];
+  char commande[60];
   int i = 0;
   int resultat;
   char type[30] = "\0";
@@ -11,47 +11,99 @@ void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
   char parametre2[30] = "\0";
   char parametre3[30] = "\0";
   char vide[30] = "\0";
+  char commentaire[30] = "\0";
 
-  while(fgets(commande, 30, fichier_assembleur)!=NULL) {
-    lireCommande(commande, type, parametre1, parametre2, parametre3);
-    resultat = detecterType(type, parametre1, parametre2, parametre3, vide);
+  while(fgets(commande, 60, fichier_assembleur)!=NULL) {
+    lireCommande(commande, type, parametre1, parametre2, parametre3, commentaire);
+    if (commentaire[0] == '#'){
+      for (i = 0;i<30;i++){
+        printf("%c", commentaire[i]);
+      }
+    }
+    if(type[0] != '\0'){
+      resultat = detecterType(type, parametre1, parametre2, parametre3, vide);
+      fprintf(fichier_hexa, "%08x\n", resultat);
+    }
     for (i=0;i<30;i++) {
       type[i] = '\0';
       parametre1[i] = '\0';
       parametre2[i] = '\0';
       parametre3[i] = '\0';
+      commentaire[i] = '\0';
     }
-    fprintf(fichier_hexa, "%08x\n", resultat);
   }
 }
 
-void lireCommande(char commande[], char type[], char parametre1[], char parametre2[], char parametre3[]) {
+void lireCommande(char commande[], char type[], char parametre1[], char parametre2[], char parametre3[], char commentaire[]) {
   int indice = 0, j = 0;
-  while((commande[indice]!=' ') && (commande[indice]!='\0')) {
+  while((commande[indice] == ' ') && (commande[indice] != '#')){
+    indice++;
+  }
+  if (commande[indice] == '#'){
+    while(commande[indice]!='\0'){
+      commentaire[j] = commande[indice];
+      indice++;
+      j++;
+    }
+  }
+  j = 0;
+  while((commande[indice]!=' ') && (commande[indice]!='\0') && (commande[indice] != '#')) {
     type[j] = commande[indice];
     indice++;
     j++;
   }
   j = 0;
+  if (commande[indice] == '#'){
+    while(commande[indice]!='\0'){
+      commentaire[j] = commande[indice];
+      indice++;
+      j++;
+    }
+  }
+  j = 0;
   indice++;
-  while((commande[indice]!=',') && (commande[indice]!='\0')) {
+  while((commande[indice]!=',') && (commande[indice]!='\0') && (commande[indice] != '#')) {
     parametre1[j] = commande[indice];
     indice++;
     j++;
   }
   j = 0;
+  if (commande[indice] == '#'){
+    while(commande[indice]!='\0'){
+      commentaire[j] = commande[indice];
+      indice++;
+      j++;
+    }
+  }
+  j = 0;
   indice++;
-  while((commande[indice]!=',') && (commande[indice]!='\0')) {
+  while((commande[indice]!=',') && (commande[indice]!='\0') && (commande[indice] != '#')) {
     parametre2[j] = commande[indice];
     indice++;
     j++;
   }
   j = 0;
+  if (commande[indice] == '#'){
+    while(commande[indice]!='\0'){
+      commentaire[j] = commande[indice];
+      indice++;
+      j++;
+    }
+  }
+  j = 0;
   indice++;
-  while(commande[indice]!='\0') {
+  while(commande[indice]!='\0' && (commande[indice] != '#')) {
     parametre3[j] = commande[indice];
     indice++;
     j++;
+  }
+  j = 0;
+  if (commande[indice] == '#'){
+    while(commande[indice]!='\0'){
+      commentaire[j] = commande[indice];
+      indice++;
+      j++;
+    }
   }
 }
 
@@ -173,13 +225,11 @@ int R_fonction(char type[], int type_nombre, char rs[], char rt[], char rd[], ch
   resultat += atoi(&rd[1]) << 11;
   resultat += atoi(&rt[1]) << 16;
   resultat += atoi(&rs[1]) << 21;
-  printf("%08x\n", resultat);
   return resultat;
 }
 
 int J_fonction(int type, char target[]) {
   int resultat = type << 26;
   resultat += (atoi(&target[0]) & 67108863);
-  printf("%08x\n", resultat);
   return resultat;
 }
