@@ -30,6 +30,7 @@ void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
       parametre2[i] = '\0';
       parametre3[i] = '\0';
       commentaire[i] = '\0';
+      vide[i] = '\0';
     }
   }
 }
