@@ -20,7 +20,7 @@ void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
         printf("%c", commentaire[i]);
       }
     }
-    if(type[0] != '\0'){
+    if(type[0] != '\0' && type[0] != '\n'){
       resultat = detecterType(type, parametre1, parametre2, parametre3, vide);
       fprintf(fichier_hexa, "%08x\n", resultat);
     }
