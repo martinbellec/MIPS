@@ -3,4 +3,21 @@ Objectif deuxième partie, faire le plan de notre programmation modulaire
 fichier.h --> fichier.c --> fichier.o --> fichier.exe
 
 Nous pouvons diviser le projet en plusieurs modules :
-- Un module convertissant les instructions textuelles en leur équivalent décimal.
+- Un module convertissant les instructions textuelles en leur équivalent décimal (convert.c)
+- Deux modules de communication avec l'utilisateur :
+  - Un pour la lecture de fichier (read_instr.c)
+  - Un attendant les commandes de l'utilisateur (wait_instr.c)
+- Un module pour les registres, contenant 3 fonctionnalités : (register.c)
+  - Une d'initialisation
+  - Une d'écriture
+  - Une de lecture
+- Un module d'affichage de l'état du processeur (display_CPU.c)
+- Un module de gestion de mémoire, contenant 2 fonctionnalités : (memory.c)
+  - Une d'écriture
+  - Une de lecture
+- Un module d'exécution de l'instruction (exec_instr.c)
+
+Pour symboliser nos registres, nous utiliserons un tableau de 32 cases de 32 bits chacune.
+On aura aussi 3 variables indépendantes qui correspondent aux registres HI LO et PC.
+
+Pour notre mémoire, nous utiliserons un tableau de 128 cases.
