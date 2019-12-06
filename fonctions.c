@@ -22,7 +22,7 @@ void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
     }
     if(type[0] != '\0' && type[0] != '\n'){
       resultat = detecterType(type, parametre1, parametre2, parametre3, vide);
-      fprintf(fichier_hexa, "%08x\n", resultat);
+      if (resultat != 0) {fprintf(fichier_hexa, "%08x\n", resultat);}
     }
     for (i=0;i<30;i++) {
       type[i] = '\0';
@@ -48,7 +48,8 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
     }
   }
   j = 0;
-  while((commande[indice]!=' ') && (commande[indice]!='\0') && (commande[indice] != '#')) {
+
+  while((commande[indice]!=' ') && (commande[indice]!='\0') && (commande[indice] != '#') ) {
     type[j] = commande[indice];
     indice++;
     j++;
@@ -109,7 +110,7 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
 }
 
 int detecterType(char type[], char parametre1[], char parametre2[], char parametre3[], char vide[]) {
-  int resultat;
+  int resultat = 0;
   int i=0,j=0;
   char zero[5] = "000";
   if(strcmp(type, "ADD") == 0) {

@@ -4,6 +4,7 @@ ADD $2,$3,$4
 ADD $2,$3,$4
 #ADDI test : 20620005
 ADDI $2,$3,5
+
 #LUI test : 3C020005
 LUI $2,5
 #LW test : 8C41000F
