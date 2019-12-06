@@ -1,0 +1,6 @@
+Objectif deuxième partie, faire le plan de notre programmation modulaire
+
+fichier.h --> fichier.c --> fichier.o --> fichier.exe
+
+Nous pouvons diviser le projet en plusieurs modules :
+- Un module convertissant les instructions textuelles en leur équivalent décimal.
