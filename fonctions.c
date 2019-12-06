@@ -49,7 +49,7 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
   }
   j = 0;
 
-  while((commande[indice]!=' ') && (commande[indice]!='\0') && (commande[indice] != '#') ) {
+  while((commande[indice]!=' ') && (commande[indice]!='\0') && (commande[indice] != '#') && (commande[indice] != '\n')) {
     type[j] = commande[indice];
     indice++;
     j++;
@@ -179,7 +179,7 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
     resultat = R_fonction(type, 24, parametre1, parametre2, parametre3, vide);
   }
   else if(strcmp(type, "NOP") == 0){
-    resultat = R_fonction(type, 0, parametre1, parametre2, parametre3, vide);
+    resultat = R_fonction(type, 0, vide, vide, vide, vide);
   }
   else if(strcmp(type, "OR") == 0){
     resultat = R_fonction(type, 37, parametre2, parametre3, parametre1, vide);
