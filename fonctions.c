@@ -22,7 +22,7 @@ void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
     }
     if(type[0] != '\0' && type[0] != '\n'){
       resultat = detecterType(type, parametre1, parametre2, parametre3, vide);
-      if (resultat != 0) {fprintf(fichier_hexa, "%08x\n", resultat);}
+      if ((resultat != 0)||(strcmp(type,"NOP")==0)) {fprintf(fichier_hexa, "%08x\n", resultat);}
     }
     for (i=0;i<30;i++) {
       type[i] = '\0';
