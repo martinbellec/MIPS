@@ -4,29 +4,40 @@
 #include "memory.h"
 #include "read_instr.h"
 
-
 int main(int argc, char *argv[]) {
-  FILE* fichier_assembleur = fopen(argv[1], "r+");
-  FILE* fichier_hexa = fopen(argv[2], "wb+");
+  FILE* fichier_assembleur;
+  FILE* fichier_hexa;
+  int retour = 1;
 
-  if(argc != 3){
-    perror("Probleme d'ouverture\n");
-    return 0;
+  if(argc == 3){
+    fichier_assembleur = fopen(argv[1], "r+");
+    fichier_hexa = fopen(argv[2], "wb+");
+    if((fichier_assembleur != NULL) && (fichier_hexa != NULL)) {
+      conversion_hexa(fichier_assembleur, fichier_hexa);
+    }
+    else{
+      perror("Problème d'ouverture\n");
+      retour = 0;
+    }
   }
-
-  if(fichier_assembleur == NULL) {
-    perror("Probleme d'ouverture\n");
-    return 0;
+  else if(argc == 1){
+    fichier_assembleur = fopen("assembleur.txt", "r+");
+    fichier_hexa = fopen("hexadecimal.txt", "wb+");
+    if((fichier_assembleur != NULL) && (fichier_hexa != NULL)) {
+      /*mode_interactif*/
+    }
+    else{
+      perror("Problème d'ouverture\n");
+      retour = 0;
+    }
   }
-
-  if(fichier_hexa == NULL) {
-    perror("Probleme d'ouverture\n");
-    return 0;
+  else{
+    perror("Problème d'ouverture\n");
+    retour = 0;
   }
-
-  conversion_hexa(fichier_assembleur, fichier_hexa);
-
+  
   fclose(fichier_assembleur);
   fclose(fichier_hexa);
-  return 0;
+
+  return retour;
 }
