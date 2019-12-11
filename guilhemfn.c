@@ -1,5 +1,6 @@
 #include "register.h"
 #include "guilhemfn.h"
+#include "memory.h"
 
 
 int I_fonction(int type, char parametre1[], char parametre2[], char parametre3[]){

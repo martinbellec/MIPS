@@ -1,6 +1,7 @@
 #include "fonctions.h"
 #include "register.h"
 #include "guilhemfn.h"
+#include "memory.h"
 
 
 int main(int argc, char *argv[]) {
