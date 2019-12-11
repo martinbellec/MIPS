@@ -1,10 +1,10 @@
-prog : main.o fonctions.o register.o guilhemfn.o memory.o
+prog : main.o convert.o register.o guilhemfn.o memory.o
 	gcc -o $@ $^ -lm
 
-main.o : main.c fonctions.h guilhemfn.h register.h memory.h
+main.o : main.c convert.h guilhemfn.h register.h memory.h
 	gcc -Wall -ansi -pedantic -g -c $<
 
-fonctions.o : fonctions.c fonctions.h guilhemfn.h register.h memory.h
+convert.o : convert.c convert.h
 	gcc -Wall -ansi -pedantic -g -c $<
 
 register.o : register.c register.h

@@ -10,3 +10,4 @@ int ADD(char type[], char parametre1[], char parametre2[], char parametre3[]);
 int ADDI(char type[], char parametre1[], char parametre2[], char parametre3[]);
 int R_fonction(char type[], int type_nombre, char rs[], char rt[], char rd[], char sa[]);
 int J_fonction(int type, char target[]);
+int I_fonction(int type, char parametre1[], char parametre2[], char parametre3[]);
