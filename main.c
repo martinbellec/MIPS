@@ -2,6 +2,7 @@
 #include "register.h"
 #include "guilhemfn.h"
 #include "memory.h"
+#include "read_instr.h"
 
 
 int main(int argc, char *argv[]) {
