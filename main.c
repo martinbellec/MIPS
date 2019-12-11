@@ -10,17 +10,17 @@ int main(int argc, char *argv[]) {
   FILE* fichier_hexa = fopen(argv[2], "wb+");
 
   if(argc != 3){
-    perror("Problème d'ouverture\n");
+    perror("Probleme d'ouverture\n");
     return 0;
   }
 
   if(fichier_assembleur == NULL) {
-    perror("Problème d'ouverture\n");
+    perror("Probleme d'ouverture\n");
     return 0;
   }
 
   if(fichier_hexa == NULL) {
-    perror("Problème d'ouverture\n");
+    perror("Probleme d'ouverture\n");
     return 0;
   }
 

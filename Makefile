@@ -19,5 +19,8 @@ memory.o : memory.c memory.h
 read_instr.o : read_instr.c read_instr.h convert.h
 	gcc -Wall -ansi -pedantic -g -c $<
 
+wait_instr.o : wait_instr.c wait_instr.h read_instr.h
+	gcc -Wall -ansi -pedantic -g -c $<
+
 clean :
 	rm -rf *.o prog
