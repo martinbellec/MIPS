@@ -49,7 +49,7 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
   }
   j = 0;
 
-  while((commande[indice]!=' ') && (commande[indice]!='\0') && (commande[indice] != '#') && (commande[indice] != '\n')) {
+  while((commande[indice]!=' ') && (commande[indice]!='\0') && (commande[indice] != '#') && (commande[indice] != '\n') && (commande[indice] != '\r')) {
     type[j] = commande[indice];
     indice++;
     j++;
@@ -228,22 +228,13 @@ int detecterType(char type[], char parametre1[], char parametre2[], char paramet
   return resultat;
 }
 
-int ADDI(char type[], char parametre1[], char parametre2[], char parametre3[]) {
-  int resultat = 8 << 26;
-  resultat += atoi(&parametre3[0]);
-  resultat += atoi(&parametre1[1]) << 16;
-  resultat += atoi(&parametre2[1]) << 21;
-  printf("%08x\n", resultat);
-  return resultat;
-}
-
 int R_fonction(char type[], int type_nombre, char rs[], char rt[], char rd[], char sa[]) {
   int resultat = type_nombre;
   if (strcmp(type, "ROTR") == 0){
     rs[1] = '1';
   }
   resultat += 0 >> 6;
-  resultat += atoi(&sa[1]) << 6;
+  resultat += atoi(&sa[0]) << 6;
   resultat += atoi(&rd[1]) << 11;
   resultat += atoi(&rt[1]) << 16;
   resultat += atoi(&rs[1]) << 21;
