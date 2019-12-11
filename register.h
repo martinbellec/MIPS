@@ -10,3 +10,4 @@ int lo;
 void init_register();
 int read_register(int numero);
 void write_register(int numero, int valeur);
+void read_all_register();

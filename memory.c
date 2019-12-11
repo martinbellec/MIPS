@@ -14,3 +14,11 @@ int read_memory(int numero){
 void write_memory(int numero, int valeur){
   memory[numero] = valeur;
 }
+
+void read_all_memory(){
+  int i = 0;
+  for (i=0;i<128;i++){
+    printf("%d", memory[i]);
+    if((i+1)%8 == 0) {printf("\n");}
+  }
+}
