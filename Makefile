@@ -7,7 +7,7 @@ main.o : main.c convert.h guilhemfn.h register.h memory.h read_instr.h
 convert.o : convert.c convert.h read_instr.h
 	gcc -Wall -ansi -pedantic -g -c $<
 
-register.o : register.c register.h
+register.o : register.c register.h memory.h
 	gcc -Wall -ansi -pedantic -g -c $<
 
 guilhemfn.o : guilhemfn.c guilhemfn.h register.h memory.h

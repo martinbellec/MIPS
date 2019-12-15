@@ -36,10 +36,13 @@ int main(int argc, char *argv[]) {
     retour = 0;
   }
   rewind(fichier_hexa);
+  init_register();
+  init_memory();
   write_register(3,4);
   read_all_register();
   exec(fichier_hexa);
   read_all_register();
+  read_all_memory();
 
   fclose(fichier_assembleur);
   fclose(fichier_hexa);

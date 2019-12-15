@@ -17,8 +17,14 @@ void write_memory(int numero, int valeur){
 
 void read_all_memory(){
   int i = 0;
+  printf("============ Mémoire ===========\n");
   for (i=0;i<128;i++){
-    printf("%d", memory[i]);
+    if(memory[i]<10){
+      printf("0%d ", memory[i]);
+    }
+    else{
+      printf("%d ", memory[i]);
+    }
     if((i+1)%8 == 0) {printf("\n");}
   }
 }
