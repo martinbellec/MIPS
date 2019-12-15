@@ -30,7 +30,7 @@ void read_all_register(){
       printf("\n");
     }
   }
-  printf("PC = %d HI = %d LO = %d\n", pc, hi, lo);
+  printf("PC = %08x HI = %d LO = %d\n", pc, hi, lo);
 }
 
 void exec(FILE* fichier_hexa){
@@ -44,6 +44,7 @@ void exec(FILE* fichier_hexa){
     else{
       reg_IJ(resultat);
     }
+    pc+=4;
   }
 }
 
