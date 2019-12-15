@@ -11,3 +11,7 @@ void init_register();
 int read_register(int numero);
 void write_register(int numero, int valeur);
 void read_all_register();
+
+void exec(FILE* fichier_hexa);
+
+void reg_add(int commande);

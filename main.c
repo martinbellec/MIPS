@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 
   if(argc == 3){
     fichier_assembleur = fopen(argv[1], "r+");
-    fichier_hexa = fopen(argv[2], "wb+");
+    fichier_hexa = fopen(argv[2], "w+");
     if((fichier_assembleur != NULL) && (fichier_hexa != NULL)) {
       conversion_hexa(fichier_assembleur, fichier_hexa);
     }
@@ -21,8 +21,8 @@ int main(int argc, char *argv[]) {
     }
   }
   else if(argc == 1){
-    fichier_assembleur = fopen("assembleur.txt", "r+");
-    fichier_hexa = fopen("hexadecimal.txt", "wb+");
+    fichier_assembleur = fopen("assembleur.txt", "w+");
+    fichier_hexa = fopen("hexadecimal.txt", "w+");
     if((fichier_assembleur != NULL) && (fichier_hexa != NULL)) {
       /*mode_interactif*/
     }
@@ -35,7 +35,12 @@ int main(int argc, char *argv[]) {
     perror("Problème d'ouverture\n");
     retour = 0;
   }
-  
+  rewind(fichier_hexa);
+  write_register(3,4);
+  read_all_register();
+  exec(fichier_hexa);
+  read_all_register();
+
   fclose(fichier_assembleur);
   fclose(fichier_hexa);
 
