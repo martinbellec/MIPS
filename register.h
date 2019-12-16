@@ -8,7 +8,7 @@
 #define rd(resultat) mask(resultat, 11, 15)
 #define sa(resultat) mask(resultat, 6, 10)
 #define fonction(resultat) mask(resultat, 0, 5)
-#define immediate(resultat) mask(resultat, 0, 15)
+#define immediate(resultat) (short)mask(resultat, 0, 15)
 #define target(resultat) mask(resultat, 0, 25)
 
 
@@ -26,6 +26,9 @@ void read_all_register();
 
 /*Fonction générale de l'exécution*/
 void exec(FILE* fichier_hexa);
+
+/*Fonction qui gère se déplace dans les adresses d'instruction (ici le fichier_hexa) en fonction du Prgram Counter*/
+void decal_pc(FILE* fichier_hexa);
 
 /*Fonction qui sélectionne les bits voulus dans un entier de 32bits en appliquant un masque & puis en décalant les bits*/
 int mask(int resultat, int first_bit, int last_bit);

@@ -38,13 +38,23 @@ void exec(FILE* fichier_hexa){
   char commande[60];
   while(fgets(commande, 60, fichier_hexa)!=NULL){
     sscanf(commande, "%08x\n", &resultat);
+    pc+=4;
     if(opcode(resultat) == 0){
       reg_R(resultat);
     }
     else{
       reg_IJ(resultat);
     }
-    pc+=4;
+    decal_pc(fichier_hexa);
+  }
+}
+
+void decal_pc(FILE* fichier_hexa){
+  int compteur = pc/4;
+  char ligne[60];
+  rewind(fichier_hexa);
+  while( (compteur!=0) && ( fgets(ligne, 60, fichier_hexa) != NULL ) ) {
+    compteur--;
   }
 }
 
@@ -104,6 +114,9 @@ void reg_R(int resultat){
 
 
 void reg_IJ(int resultat){
+  if(((opcode(resultat) != 2) || (opcode(resultat) != 3)) && (immediate(resultat)<0)) {
+    resultat+=pow(2,16);
+  }
   if(opcode(resultat) == 15){
     lui(resultat);
   }
@@ -145,7 +158,7 @@ void sw(int resultat){
 }
 
 void lui(int resultat){
-  registre[rt(resultat)] = immediate(resultat);
+  registre[rt(resultat)] += immediate(resultat) << 16;
 }
 
 void add(int resultat){
@@ -175,7 +188,7 @@ void blez(int resultat){
 }
 
 void bne(int resultat){
-  if(registre[rs(resultat)] != registre[rt(resultat)]){
+  if(registre[rs(resultat)] != registre[rt(resultat)]) {
     pc += (immediate(resultat) << 2);
   }
 }
@@ -222,8 +235,9 @@ void or(int resultat){
 
 void rotr(int resultat){
   int rotation=0;
-  rotation = mask(resultat, sa(resultat), 31);
-  rotation = rotation | (mask(resultat, 0, sa(resultat)-1) << sa(resultat));
+  printf("%08x, %d\n", resultat, sa(resultat));
+  rotation = registre[rt(resultat)];
+  rotation = (rotation >> sa(resultat)) | (rotation << (32-sa(resultat)));
   registre[rd(resultat)] = rotation;
 }
 
