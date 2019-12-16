@@ -59,37 +59,82 @@ int mask(int resultat, int first_bit, int last_bit){
 
 void reg_R(int resultat){
   if(fonction(resultat) == 32){
-    reg_add(resultat);
+    add(resultat);
   }
 }
 
 
 void reg_IJ(int resultat){
   if(opcode(resultat) == 15){
-    reg_lui(resultat);
+    lui(resultat);
   }
   else if(opcode(resultat) == 43){
-    reg_sw(resultat);
+    sw(resultat);
   }
   else if(opcode(resultat) == 8){
-    reg_addi(resultat);
+    addi(resultat);
   }
 
 }
 
-void reg_addi(int resultat){
+void addi(int resultat){
   registre[rt(resultat)] = registre[rs(resultat)] + immediate(resultat);
 }
 
-
-void reg_sw(int resultat){
+void sw(int resultat){
   memory[registre[rs(resultat)] + immediate(resultat)] = registre[rt(resultat)];
 }
 
-void reg_lui(int resultat){
+void lui(int resultat){
   registre[rt(resultat)] = immediate(resultat);
 }
 
-void reg_add(int resultat){
+void add(int resultat){
   registre[rd(resultat)] = registre[rs(resultat)] + registre[rt(resultat)];
+}
+
+void and(int resultat){
+  registre[rd(resultat)] = registre[rs(resultat)] & registre[rt(resultat)];
+}
+
+void beq(int resultat){
+  if(registre[rs(resultat)] == registre[rt(resultat)]){
+    pc += (immediate(resultat) << 2);
+  }
+}
+
+void bgtz(int resultat){
+  if(registre[rs(resultat)] > 0){
+    pc += (immediate(resultat) << 2);
+  }
+}
+
+void blez(int resultat){
+  if(registre[rs(resultat)] <= 0){
+    pc += (immediate(resultat) << 2);
+  }
+}
+
+void bne(int resultat){
+  if(registre[rs(resultat)] != registre[rt(resultat)]){
+    pc += (immediate(resultat) << 2);
+  }
+}
+
+void reg_div(int resultat){
+  lo = (registre[rs(resultat)] / registre[rt(resultat)]);
+  hi = (registre[rs(resultat)] % registre[rt(resultat)]);
+}
+
+void j(int resultat){
+  pc = (target(resultat) << 2);
+}
+
+void jal(int resultat){
+  registre[31] = pc+8;
+  pc = (target(resultat) << 2);
+}
+
+void jr(int resultat){
+
 }
