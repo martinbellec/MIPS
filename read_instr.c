@@ -13,7 +13,6 @@ void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
   char parametre3[30] = "\0";
   char vide[30] = "\0";
   char commentaire[30] = "\0";
-
   while(fgets(commande, 60, fichier_assembleur)!=NULL) {
     lireCommande(commande, type, parametre1, parametre2, parametre3, commentaire);
     if (commentaire[0] == '#'){
