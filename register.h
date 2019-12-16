@@ -54,7 +54,6 @@ void lw(int resultat);
 void mfhi(int resultat);
 void mflo(int resultat);
 void mult(int resultat);
-void nop();
 void or(int resultat);
 void rotr(int resultat);
 void sll(int resultat);

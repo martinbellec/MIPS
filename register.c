@@ -61,6 +61,45 @@ void reg_R(int resultat){
   if(fonction(resultat) == 32){
     add(resultat);
   }
+  else if(fonction(resultat) == 36){
+    and(resultat);
+  }
+  else if(fonction(resultat) == 37){
+    or(resultat);
+  }
+  else if(fonction(resultat) == 38){
+    xor(resultat);
+  }
+  else if((fonction(resultat) == 2) && (rs(resultat) == 1)) {
+    rotr(resultat);
+  }
+  else if(fonction(resultat) == 2){
+    srl(resultat);
+  }
+  else if(fonction(resultat) == 0){
+    sll(resultat);
+  }
+  else if(fonction(resultat) == 42){
+    slt(resultat);
+  }
+  else if(fonction(resultat) == 16){
+    mfhi(resultat);
+  }
+  else if(fonction(resultat) == 18){
+    mflo(resultat);
+  }
+  else if(fonction(resultat) == 8){
+    jr(resultat);
+  }
+  else if(fonction(resultat) == 34){
+    sub(resultat);
+  }
+  else if(fonction(resultat) == 24){
+    mult(resultat);
+  }
+  else if(fonction(resultat) == 26){
+    reg_div(resultat);
+  }
 }
 
 
@@ -73,6 +112,27 @@ void reg_IJ(int resultat){
   }
   else if(opcode(resultat) == 8){
     addi(resultat);
+  }
+  else if(opcode(resultat) == 35){
+    lw(resultat);
+  }
+  else if(opcode(resultat) == 4){
+    beq(resultat);
+  }
+  else if(opcode(resultat) == 5){
+    bne(resultat);
+  }
+  else if(opcode(resultat) == 7){
+    bgtz(resultat);
+  }
+  else if(opcode(resultat) == 6){
+    blez(resultat);
+  }
+  else if(opcode(resultat) == 2){
+    j(resultat);
+  }
+  else if(opcode(resultat) == 3){
+    jal(resultat);
   }
 }
 
@@ -154,10 +214,6 @@ void mult(int resultat){
   long int produit = registre[rs(resultat)] * registre[rt(resultat)];
   lo = mask(produit, 0, 31);
   hi = mask(produit, 32, 63);
-}
-
-void nop(){
-  sll(0);
 }
 
 void or(int resultat){
