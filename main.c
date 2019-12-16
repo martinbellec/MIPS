@@ -3,6 +3,7 @@
 #include "guilhemfn.h"
 #include "memory.h"
 #include "read_instr.h"
+#include "wait_instr.h"
 
 int main(int argc, char *argv[]) {
   FILE* fichier_assembleur;
@@ -24,7 +25,7 @@ int main(int argc, char *argv[]) {
     fichier_assembleur = fopen("assembleur.txt", "w+");
     fichier_hexa = fopen("hexadecimal.txt", "w+");
     if((fichier_assembleur != NULL) && (fichier_hexa != NULL)) {
-      /*mode_interactif*/
+      mode_interactif(fichier_assembleur, fichier_hexa);
     }
     else{
       perror("Problème d'ouverture\n");

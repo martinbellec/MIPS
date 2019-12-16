@@ -1,7 +1,7 @@
-prog : main.o convert.o register.o guilhemfn.o memory.o read_instr.o
+prog : main.o convert.o register.o guilhemfn.o memory.o read_instr.o wait_instr.o
 	gcc -o $@ $^ -lm
 
-main.o : main.c convert.h guilhemfn.h register.h memory.h read_instr.h
+main.o : main.c convert.h guilhemfn.h register.h memory.h read_instr.h wait_instr.h
 	gcc -Wall -ansi -pedantic -g -c $<
 
 convert.o : convert.c convert.h read_instr.h
@@ -19,7 +19,7 @@ memory.o : memory.c memory.h
 read_instr.o : read_instr.c read_instr.h convert.h
 	gcc -Wall -ansi -pedantic -g -c $<
 
-wait_instr.o : wait_instr.c wait_instr.h read_instr.h
+wait_instr.o : wait_instr.c wait_instr.h read_instr.h 
 	gcc -Wall -ansi -pedantic -g -c $<
 
 clean :
