@@ -157,7 +157,7 @@ void mult(int resultat){
 }
 
 void nop(){
-
+  sll(0);
 }
 
 void or(int resultat){
@@ -176,5 +176,17 @@ void sll(int resultat){
 }
 
 void slt(int resultat){
-  
+  registre[rd(resultat)] = (registre[rs(resultat)] < registre[rt(resultat)]);
+}
+
+void srl(int resultat){
+  registre[rd(resultat)] = registre[rt(resultat)] >> sa(resultat);
+}
+
+void sub(int resultat){
+  registre[rd(resultat)] = registre[rs(resultat)] - registre[rt(resultat)];
+}
+
+void xor(int resultat){
+   registre[rd(resultat)] = registre[rs(resultat)] ^ registre[rt(resultat)];
 }

@@ -59,3 +59,6 @@ void or(int resultat);
 void rotr(int resultat);
 void sll(int resultat);
 void slt(int resultat);
+void srl(int resultat);
+void sub(int resultat);
+void xor(int resultat);
