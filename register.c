@@ -74,7 +74,6 @@ void reg_IJ(int resultat){
   else if(opcode(resultat) == 8){
     addi(resultat);
   }
-
 }
 
 void addi(int resultat){
@@ -136,5 +135,46 @@ void jal(int resultat){
 }
 
 void jr(int resultat){
+  pc = registre[rs(resultat)];
+}
 
+void lw(int resultat){
+  registre[rt(resultat)] = memory[registre[rs(resultat)] + immediate(resultat)];
+}
+
+void mfhi(int resultat){
+  registre[rd(resultat)] = hi;
+}
+
+void mflo(int resultat){
+  registre[rd(resultat)] = lo;
+}
+
+void mult(int resultat){
+  long int produit = registre[rs(resultat)] * registre[rt(resultat)];
+  lo = mask(produit, 0, 31);
+  hi = mask(produit, 32, 63);
+}
+
+void nop(){
+
+}
+
+void or(int resultat){
+   registre[rd(resultat)] = registre[rs(resultat)] | registre[rt(resultat)];
+ }
+
+void rotr(int resultat){
+  int rotation=0;
+  rotation = mask(resultat, sa(resultat), 31);
+  rotation = rotation | (mask(resultat, 0, sa(resultat)-1) << sa(resultat));
+  registre[rd(resultat)] = rotation;
+}
+
+void sll(int resultat){
+  registre[rd(resultat)] = registre[rt(resultat)] << sa(resultat);
+}
+
+void slt(int resultat){
+  
 }
