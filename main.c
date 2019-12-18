@@ -4,6 +4,8 @@
 #include "memory.h"
 #include "read_instr.h"
 #include "wait_instr.h"
+#include "exec.h"
+
 
 int main(int argc, char *argv[]) {
   FILE* fichier_assembleur;
