@@ -5,16 +5,17 @@ fichier.h --> fichier.c --> fichier.o --> fichier.exe
 Nous pouvons diviser le projet en plusieurs modules :
 - Un module convertissant les instructions textuelles en leur équivalent décimal (convert.c)
 - Deux modules de communication avec l'utilisateur :
-  - Un pour la lecture de fichier (read_instr.c)
+  - Un pour la lecture de fichier qui permettra l'affichage des instructions (read_instr.c)
   - Un attendant les commandes de l'utilisateur (wait_instr.c)
 - Un module pour les registres, contenant 3 fonctionnalités : (register.c)
   - Une d'initialisation
-  - Une d'écriture
+  - Une d'ecriture
   - Une de lecture
-- Un module d'affichage de l'état du processeur (display_CPU.c)
+  - Une fonction d'affichage de l'état des registres
 - Un module de gestion de mémoire, contenant 2 fonctionnalités : (memory.c)
   - Une d'écriture
   - Une de lecture
+  - Une fonction d'affichage de l'etat de la memoire
 - Un module d'exécution de l'instruction (exec_instr.c)
 
 Pour symboliser nos registres, nous utiliserons un tableau de 32 cases de 32 bits chacune.
