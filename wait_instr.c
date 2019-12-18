@@ -12,7 +12,7 @@ void viderBuffer(){
 void mode_interactif(FILE * fichier_assembleur, FILE * fichier_hexa){
   char mon_assembleur[60] = "\0";
   do {
-    printf("Quelle est votre commande assembleur? \n");
+    printf("Quelle est votre commande assembleur? EXIT pour sortir\n");
     fgets(mon_assembleur, 60, stdin);
     if (strcmp(mon_assembleur, "EXIT\n")) {
       fprintf(fichier_assembleur, "%s", mon_assembleur);
