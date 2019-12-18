@@ -171,24 +171,28 @@ void and(int resultat){
 
 void beq(int resultat){
   if(registre[rs(resultat)] == registre[rt(resultat)]){
+    pc -= 4;
     pc += (immediate(resultat) << 2);
   }
 }
 
 void bgtz(int resultat){
   if(registre[rs(resultat)] > 0){
+    pc -= 4;
     pc += (immediate(resultat) << 2);
   }
 }
 
 void blez(int resultat){
   if(registre[rs(resultat)] <= 0){
+    pc -= 4;
     pc += (immediate(resultat) << 2);
   }
 }
 
 void bne(int resultat){
   if(registre[rs(resultat)] != registre[rt(resultat)]) {
+    pc -= 4;
     pc += (immediate(resultat) << 2);
   }
 }
@@ -203,7 +207,7 @@ void j(int resultat){
 }
 
 void jal(int resultat){
-  registre[31] = pc+8;
+  registre[31] = pc+4; 
   pc = (target(resultat) << 2);
 }
 
@@ -235,7 +239,6 @@ void or(int resultat){
 
 void rotr(int resultat){
   int rotation=0;
-  printf("%08x, %d\n", resultat, sa(resultat));
   rotation = registre[rt(resultat)];
   rotation = (rotation >> sa(resultat)) | (rotation << (32-sa(resultat)));
   registre[rd(resultat)] = rotation;
