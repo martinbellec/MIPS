@@ -13,13 +13,20 @@ int main(int argc, char *argv[]) {
   int retour = 1;
 
   if(argc == 3){
-    fichier_assembleur = fopen(argv[1], "r+");
-    fichier_hexa = fopen(argv[2], "w+");
-    if((fichier_assembleur != NULL) && (fichier_hexa != NULL)) {
-      conversion_hexa(fichier_assembleur, fichier_hexa);
+    if(strcmp(argv[2], "-pas")!=0){
+      fichier_assembleur = fopen(argv[1], "r+");
+      fichier_hexa = fopen(argv[2], "w+");
+      if((fichier_assembleur != NULL) && (fichier_hexa != NULL)) {
+        conversion_hexa(fichier_assembleur, fichier_hexa);
+      }
+      else{
+        perror("Problème d'ouverture\n");
+        retour = 0;
+      }
     }
     else{
-      perror("Problème d'ouverture\n");
+      printf("Mauvais appel du programme !\n");
+      printf("Le programme doit être appelé sous la forme : ./prog fichier_entree.txt fichier_sortie.txt , suivi ou non de l'option -pas\n");
       retour = 0;
     }
   }
@@ -35,19 +42,21 @@ int main(int argc, char *argv[]) {
     }
   }
   else{
-    perror("Problème d'ouverture\n");
+    printf("Mauvais appel du programme !\n");
+    printf("Le programme doit être appelé sous la forme : ./prog fichier_entree.txt fichier_sortie.txt , suivi ou non de l'option -pas\n");
     retour = 0;
   }
-  rewind(fichier_hexa);
-  init_register();
-  init_memory();
-  exec(fichier_hexa);
-  read_all_register();
-  read_all_memory();
 
-
-  fclose(fichier_assembleur);
-  fclose(fichier_hexa);
+  if(retour){
+    rewind(fichier_hexa);
+    init_register();
+    init_memory();
+    exec(fichier_hexa);
+    read_all_register();
+    read_all_memory();
+    fclose(fichier_assembleur);
+    fclose(fichier_hexa);
+  }
 
   return retour;
 }
