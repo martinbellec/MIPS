@@ -13,6 +13,7 @@ void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
   char parametre3[30] = "\0";
   char vide[30] = "\0";
   char commentaire[30] = "\0";
+  printf("\n =======Tableau des instructions=======\n");
   while(fgets(commande, 60, fichier_assembleur)!=NULL) {
     lireCommande(commande, type, parametre1, parametre2, parametre3, commentaire);
     if (commentaire[0] == '#'){
@@ -22,7 +23,10 @@ void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa) {
     }
     if(type[0] != '\0' && type[0] != '\n'){
       resultat = detecterType(type, parametre1, parametre2, parametre3, vide);
-      if ((resultat != 0)||(strcmp(type,"NOP")==0)) {fprintf(fichier_hexa, "%08x\n", resultat);}
+      if ((resultat != 0)||(strcmp(type,"NOP")==0)) {
+        fprintf(fichier_hexa, "%08x\n", resultat);
+        printf("%08x = %s", resultat, commande);
+      }
     }
     for (i=0;i<30;i++) {
       type[i] = '\0';
@@ -107,4 +111,21 @@ void lireCommande(char commande[], char type[], char parametre1[], char parametr
       j++;
     }
   }
+}
+
+void afficher_A_H(FILE * fichier_assembleur, FILE * fichier_hexa){
+  char hexa[60];
+  char assembleur[60];
+  rewind(fichier_hexa);
+  rewind(fichier_assembleur);
+  printf("\n =======Tableau des instructions=======\n");
+  while(fgets(hexa, 60, fichier_hexa)!=NULL){
+    fgets(assembleur, 60, fichier_assembleur);
+    if ((assembleur[0]=='\r')||(assembleur[0]=='\n')||(assembleur[0]=='#')){
+      fgets(assembleur, 60, fichier_assembleur);
+    }
+    hexa[8]=' ';
+    printf("%s= %s", hexa, assembleur);
+  }
+  printf("\n");
 }

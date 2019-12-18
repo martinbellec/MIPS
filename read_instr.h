@@ -5,3 +5,4 @@
 
 void conversion_hexa(FILE* fichier_assembleur, FILE* fichier_hexa);
 void lireCommande(char commande[], char type[], char parametre1[], char parametre2[], char parametre3[], char commentaire[]);
+void afficher_A_H(FILE * fichier_assembleur, FILE * fichier_hexa);
