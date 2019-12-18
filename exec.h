@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+/*Macros pour la fonction mask qui permet de simplifier la lecture des fonctions et leur débuggage*/
+
 #define rs(resultat) mask(resultat, 21, 25)
 #define opcode(resultat) mask(resultat, 26, 31)
 #define rt(resultat) mask(resultat, 16, 20)
@@ -10,6 +12,8 @@
 #define fonction(resultat) mask(resultat, 0, 5)
 #define immediate(resultat) (short)mask(resultat, 0, 15)
 #define target(resultat) mask(resultat, 0, 25)
+
+/*Prototypes des fonctions*/
 
 /*Fonction générale de l'exécution*/
 void exec(FILE* fichier_hexa);
