@@ -5,7 +5,7 @@ Compte rendu et Explications du projet
 
 Structure de nos fichiers :
 
-Lors de ce projet, nous codons en C les modules décrit ci dessous,
+Lors de ce projet, nous codons en C les modules décrits ci dessous,
 selon la structure suivante :
 
 fichier.h --> fichier.c --> fichier.o --> fichier.exe
@@ -13,21 +13,21 @@ fichier.h --> fichier.c --> fichier.o --> fichier.exe
 Le fichier .h correspond au Header et contient les protocoles de nos fonctions.
 Il contient aussi les variables globales que nous utiliserons par la suite.
 De plus, il contient les descriptions de nos fonctions.
-Le fichier .c contient le code source de nos fonctions, découpé en module.
-Le fichier .o correspond à nos fonctions compilés.
-Le fichier .exe (qui s'appelle chez nous prog) se lance grace à la commande ./prog
+Le fichier .c contient le code source de nos fonctions, découpé en modules.
+Le fichier .o correspond à nos fonctions compilées.
+Le fichier .exe (qui s'appelle chez nous prog) se lance grâce à la commande ./prog
 et est obtenu à la suite du linkage.
 
 La réalisation d'un makefile a été nécessaire pour la bonne compilation
-ainsi que pour des raisons de rapidité.
+ainsi que pour plus d'efficacité.
 
 
 
-Fonctionnement et organisation du code en module et du binôme :
+Fonctionnement et organisation du code en modules et du binôme :
 
-Pour développer notre simulateur, nous avons créer un GIT permettant la collaboration
+Pour développer notre simulateur, nous avons créé un GIT permettant la collaboration
 de chacun de nous, ainsi que le versionnage.
-Les modules décrits ci dessous ont ainsi pu être développer par un membre du binôme de façon indépendante.
+Les modules décrits ci dessous ont ainsi pu être développés par un membre du binôme de façon indépendante.
 Il a ainsi suffit de linker les fonctions entre elles pour construire notre simulateur.
 
 Nous pouvons ainsi diviser le projet en plusieurs modules :
@@ -35,12 +35,12 @@ Nous pouvons ainsi diviser le projet en plusieurs modules :
 - Deux modules de communication avec l'utilisateur :
   - Un pour la lecture de fichier qui permettra l'affichage des instructions (read_instr.c)
   - Un attendant les commandes de l'utilisateur (wait_instr.c)
-- Un module pour les registres, contenant 3 fonctionnalités : (register.c)
+- Un module pour les registres, contenant 4 fonctionnalités : (register.c)
   - Une d'initialisation
   - Une d'écriture
   - Une de lecture
   - Une fonction d'affichage de l'état des registres
-- Un module de gestion de mémoire, contenant 2 fonctionnalités : (memory.c)
+- Un module de gestion de mémoire, contenant 3 fonctionnalités : (memory.c)
   - Une d'écriture
   - Une de lecture
   - Une fonction d'affichage de l'état de la mémoire
@@ -50,7 +50,7 @@ Tous ces modules fonctionnent en lien et permettent mis bout à bout la réalisa
 
 
 
-Concernant les mémoires et les registres :
+Concernant la mémoire et les registres :
 
 Pour symboliser nos registres, nous utiliserons un tableau de 32 cases de 32 bits chacune.
 On aura aussi 3 variables indépendantes qui correspondent aux registres HI LO et PC.
@@ -73,7 +73,7 @@ où chaque commande est séparée par un retour à la ligne, et d'un fichier tex
 qui contiendra notre code héxadecimal.
 Enfin, l'option -pas peut être ajoutée, elle est pour l'heure en cours de réalisation.
 
-Si une commande n'est pas reconnu, elle est alors ignorée.
+Si une commande n'est pas reconnue, elle est alors ignorée.
 La prise en charge des commentaires est assurée,
 ainsi que les sauts de ligne, ou les espaces.
 Le programme counter est fonctionnel, ainsi que la gestion de la mémoire et des registres.

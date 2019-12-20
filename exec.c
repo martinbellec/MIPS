@@ -7,6 +7,9 @@ void exec(FILE* fichier_hexa){
   char commande[60];
   while(fgets(commande, 60, fichier_hexa)!=NULL){
     sscanf(commande, "%08x\n", &resultat);
+    if(pas == 1){
+      pas_a_pas();
+    }
     pc+=4;
     if(opcode(resultat) == 0){
       reg_R(resultat);
@@ -15,6 +18,28 @@ void exec(FILE* fichier_hexa){
       reg_IJ(resultat);
     }
     decal_pc(fichier_hexa);
+  }
+}
+
+void pas_a_pas(){
+  char reponse[2];
+  printf("PC = %08x\n", pc);
+  while(reponse[0] != 'c'){
+    printf("Appuyez sur [c] pour continuer, [r] pour afficher les registres ou [m] pour la mémoire\n");
+    scanf("%s", reponse);
+    if (reponse[0] == 'r'){
+      read_all_register();
+    }
+    else if (reponse[0] == 'm'){
+      read_all_memory();
+    }
+    else if (reponse[0] == 'c'){
+      printf("Commande suivante :\n");
+    }
+    else {
+      printf("%s\n", reponse);
+      printf("Mauvaise commande !\n");
+    }
   }
 }
 

@@ -24,6 +24,9 @@ void decal_pc(FILE* fichier_hexa);
 /*Fonction qui sélectionne les bits voulus dans un entier de 32bits en appliquant un masque & puis en décalant les bits*/
 int mask(int resultat, int first_bit, int last_bit);
 
+/*Fonction qui lance le mode pas à pas*/
+void pas_a_pas();
+
 /*Répartition des commandes*/
 
 void reg_R(int resultat);
