@@ -12,6 +12,7 @@ fichier.h --> fichier.c --> fichier.o --> fichier.exe
 
 Le fichier .h correspond au Header et contient les protocoles de nos fonctions.
 Il contient aussi les variables globales que nous utiliserons par la suite.
+De plus, il contient les descriptions de nos fonctions.
 Le fichier .c contient le code source de nos fonctions, découpé en module.
 Le fichier .o correspond à nos fonctions compilés.
 Le fichier .exe (qui s'appelle chez nous prog) se lance grace à la commande ./prog
